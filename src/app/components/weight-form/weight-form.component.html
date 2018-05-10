@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+    </a>
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Add Weight
+  </div>
+  <div class="card-body">
+    <form #weightForm="ngForm" (ngSubmit)="onSubmit(weightForm)">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input 
+            type="date"
+            class="form-control"
+            name="date"
+            #date="ngModel"
+            [ngClass]="{'is-invalid':date.errors && date.touched}"
+            [(ngModel)]="weight.date"
+            required
+        >
+
+        <div [hidden]="!date.errors?.required" class="invalid-feedback">
+          Date is required
+        </div>
+
+      </div>
+
+
+          <div class="form-group">
+              <label for="weight">Weight</label>
+              <input 
+                type="number"
+                class="form-control"
+                [(ngModel)]="weight.weight"
+                name="weight"
+                #weight = "ngModel"
+              >
+            </div>
+
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
