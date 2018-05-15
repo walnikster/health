@@ -4,7 +4,7 @@
       <i class="fa fa-balance-scale"></i> Weight History</h2>
   </div>
   <div class="col-md-6">
-    <h5 class="text-right text-secondary">Progress since firstdate difference kg</h5>
+    <h5 class="text-right text-secondary">Progress since {{firstdate}} {{difference}} kg</h5>
   </div>
 </div>
 <table *ngIf="weights?.length > 0;else noWeights" class="table table-striped">
@@ -18,11 +18,14 @@
   <tbody>
     <tr *ngFor="let weight of weights">
       <td>{{ weight.date }}</td>
-      <td>{{ weight.weight }}</td>
+      <td>{{ weight.weight.toFixed(2) }}</td>
       <td><a (click)="deleteItem(weight.id)" class="btn btn-danger"><i class="fa fa-remove"></i></a></td>
     </tr>
   </tbody>
 </table>
+<div class="container" style="height:100%; width:100%;">
+  <chart [type]="type" [data]="data" [options]="options"></chart>
+</div>
 
 <ng-template #noWeights>
   <hr>

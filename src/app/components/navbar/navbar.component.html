@@ -13,7 +13,6 @@
                     <a routerLink="/weight" class="nav-link">Weight Tracking</a>
                 </li>
             </ul>
-
             <ul class="navbar-nav ml-auto">
                 <li *ngIf="isLoggedIn" class="nav-item">
                     <a href="#" class="nav-link">{{ loggedInUser }}</a>
@@ -24,7 +23,6 @@
                 <li class="nav-item" *ngIf="isLoggedIn">
                     <a href="/login" (click)="logout()" class="nav-link">Logout</a>
                 </li>
-                
             </ul>
         </div>
     </div>

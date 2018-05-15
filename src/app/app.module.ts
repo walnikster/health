@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { FlashMessagesModule } from "angular2-flash-messages";
+import { ChartModule } from 'angular2-chartjs';
 
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "angularfire2";
@@ -38,7 +39,8 @@ import { AuthService } from "./services/auth.service";
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, "health"),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChartModule
   ],
   providers: [WeightService, AuthService],
   bootstrap: [AppComponent]
