@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "angularfire2/auth";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core"
+import { AngularFireAuth } from "angularfire2/auth"
+import { Observable } from "rxjs"
+import { map } from "rxjs/operators"
 
 @Injectable()
 export class AuthService {
@@ -10,23 +11,23 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.afAuth.auth
         .signInWithEmailAndPassword(email, password)
-        .then(userData => resolve(userData), err => reject(err));
-    });
+        .then(userData => resolve(userData), err => reject(err))
+    })
   }
 
   register(email: string, password: string) {
     return new Promise((resolve, reject) => {
       this.afAuth.auth
         .createUserWithEmailAndPassword(email, password)
-        .then(userData => resolve(userData), err => reject(err));
-    });
+        .then(userData => resolve(userData), err => reject(err))
+    })
   }
 
   getAuth() {
-    return this.afAuth.authState.map(auth => auth);
+    return this.afAuth.authState.pipe(map(auth => auth))
   }
-  
+
   logout() {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut()
   }
 }
