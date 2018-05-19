@@ -20,6 +20,7 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { WeightrackingComponent } from "./components/weightracking/weightracking.component";
 import { WeightService } from "./services/weight.service";
 import { AuthService } from "./services/auth.service";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AuthService } from "./services/auth.service";
     AngularFireModule.initializeApp(environment.firebase, "health"),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ChartModule
+    ChartModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [WeightService, AuthService],
   bootstrap: [AppComponent]
