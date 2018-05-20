@@ -1,8 +1,8 @@
 <div class="card mt-3">
   <div class="card-header d-flex flex-row self-align-bottom">
-    <h2>
-      <i class="fa fa-balance-scale"></i> Weight History</h2>
-    <h5 class="text-right text-secondary ml-auto">Progress since {{firstdate}} {{difference}} kg</h5>
+    <h5>
+      <i class="fa fa-balance-scale"></i> Weight History</h5>
+    <h5 class="text-right text-muted ml-auto">Progress since {{firstdate}} {{difference}} kg</h5>
   </div>
   <div class="card-body">
     <table *ngIf="weights?.length > 0;else noWeights" class="table table-striped table-sm">
