@@ -15,10 +15,12 @@ export class WeightHistoryComponent implements OnInit {
   type: string
   data: any
   options: any
+  loading: boolean = false
 
   constructor(private weightService: WeightService) {}
 
   ngOnInit() {
+    this.loading = true
     this.weightService.getWeights().subscribe(weights => {
       this.weights = weights
       this.firstdate = weights[weights.length - 1].date
@@ -26,6 +28,7 @@ export class WeightHistoryComponent implements OnInit {
       let lastWeight = weights[0].weight
       this.difference = (lastWeight - firstWeight).toFixed(2)
       let chartWeights = weights.slice().reverse()
+      this.loading = false
       this.data = {
         labels: chartWeights.map(a => a.date.toLocaleString()),
         datasets: [
@@ -50,7 +53,7 @@ export class WeightHistoryComponent implements OnInit {
               parser: "YYYY-MM-DD",
               unit: "day",
               displayFormats: {
-                day: "YYYY-MM-DD"
+                day: "DD-MMM"
               }
             },
             distribution: "series"
