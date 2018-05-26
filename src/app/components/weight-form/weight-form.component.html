@@ -10,10 +10,10 @@
 </div>
 
 <div class="card">
-  <div class="card-header">
+  <div class="card-header" data-toggle="collapse" data-target="#weight-form">
     <h5>Add Weight</h5>
   </div>
-  <div class="card-body">
+  <div class="card-body" class="collapse p-2" id="weight-form">
     <form #weightForm="ngForm" (ngSubmit)="onSubmit(weightForm)">
       <div class="form-group">
         <label for="date">Date</label>
@@ -28,7 +28,7 @@
         <label for="weight">Weight</label>
         <input type="number" class="form-control" [(ngModel)]="weight.weight" name="weight" #weight="ngModel">
       </div>
-      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+      <input type="submit" value="Submit" class="btn btn-primary btn-block mb-2">
     </form>
   </div>
 </div>
