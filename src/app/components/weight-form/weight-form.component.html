@@ -14,21 +14,25 @@
     <h5>Add Weight</h5>
   </div>
   <div class="card-body" class="collapse p-2" id="weight-form">
-    <form #weightForm="ngForm" (ngSubmit)="onSubmit(weightForm)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" class="form-control" name="date" #date="ngModel" [ngClass]="{'is-invalid':date.errors && date.touched}"
-          [(ngModel)]="weight.date" required>
-
-        <div [hidden]="!date.errors?.required" class="invalid-feedback">
+        <input type="date" class="form-control" id="date" formControlName="date" [ngClass]="{'is-invalid':form.controls.date.errors && form.controls.date.touched}">
+        <div [hidden]="!form.controls.date.errors?.required" class="invalid-feedback">
           Date is required
         </div>
       </div>
       <div class="form-group">
         <label for="weight">Weight</label>
-        <input type="number" class="form-control" [(ngModel)]="weight.weight" name="weight" #weight="ngModel">
+        <input type="number" class="form-control" formControlName="weight" id="weight" [ngClass]="{'is-invalid':form.controls.weight.errors && form.controls.weight.touched}">
+        <div [hidden]="!form.controls.weight.errors?.required" class="invalid-feedback">
+          Weight is required
+        </div>
+        <div [hidden]="!form.controls.weight.errors?.min" class="invalid-feedback">
+          Please enter a weight greater than 0.
+        </div>
       </div>
-      <input type="submit" value="Submit" class="btn btn-primary btn-block mb-2">
+      <input type="submit" value="Submit" [disabled]="!form.valid" class="btn btn-primary btn-block mb-2">
     </form>
   </div>
 </div>

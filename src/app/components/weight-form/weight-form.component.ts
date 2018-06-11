@@ -1,43 +1,44 @@
-import { Component, OnInit, ViewChild } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { FlashMessagesService } from "angular2-flash-messages"
 import { WeightService } from "../../services/weight.service"
-import { Router } from "@angular/router"
-
-import { Weight } from "../../models/Weight"
+import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 @Component({
   selector: "app-weight-form",
   templateUrl: "./weight-form.component.html",
   styleUrls: ["./weight-form.component.css"]
 })
 export class WeightFormComponent implements OnInit {
-  weight: Weight = {
-    date: "",
-    weight: 0
-  }
-
-  @ViewChild("clientForm") form: any
+  form: FormGroup
 
   constructor(
     private flashMessage: FlashMessagesService,
     private weightService: WeightService,
-    private router: Router
+    private fb: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const localDate = `${new Date().getDate()}.${new Date().getMonth() +
+      1}.${new Date().getFullYear()}`
 
-  onSubmit({ value, valid }: { value: Weight; valid: boolean }) {
-    if (!valid) {
+    this.form = this.fb.group({
+      date: [localDate, Validators.required],
+      weight: [90, [Validators.required, Validators.min(0)]]
+    })
+  }
+
+  onSubmit() {
+    if (!this.form.valid) {
       this.flashMessage.show("Please fill out the form correctly", {
         cssClass: "alert-danger",
         timeout: 4000
       })
     } else {
-      this.weightService.newWeight(value)
+      this.weightService.newWeight(this.form.value)
       this.flashMessage.show("New weight added", {
         cssClass: "alert-success",
         timeout: 4000
       })
-      this.router.navigate(["/weight"])
+      this.form.reset()
     }
   }
 }
