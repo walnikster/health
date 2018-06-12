@@ -31,6 +31,9 @@
         <div [hidden]="!form.controls.weight.errors?.min" class="invalid-feedback">
           Please enter a weight greater than 0.
         </div>
+        <div [hidden]="!form.controls.weight.errors?.max" class="invalid-feedback">
+          Please enter a weight less than 150.
+        </div>
       </div>
       <input type="submit" value="Submit" [disabled]="!form.valid" class="btn btn-primary btn-block mb-2">
     </form>

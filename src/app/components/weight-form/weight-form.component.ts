@@ -17,12 +17,12 @@ export class WeightFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const localDate = `${new Date().getDate()}.${new Date().getMonth() +
-      1}.${new Date().getFullYear()}`
-
     this.form = this.fb.group({
-      date: [localDate, Validators.required],
-      weight: [90, [Validators.required, Validators.min(0)]]
+      date: [new Date(), Validators.required],
+      weight: [
+        90,
+        [Validators.required, Validators.min(0), Validators.max(150)]
+      ]
     })
   }
 

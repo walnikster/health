@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { Weight } from "../../models/Weight"
 import { WeightService } from "../../services/weight.service"
+import { JsonPipe } from "@angular/common"
 
 @Component({
   selector: "app-weight-history",
@@ -66,6 +67,10 @@ export class WeightHistoryComponent implements OnInit {
 
   showdata() {
     console.log(this.data)
+  }
+
+  showJson() {
+    return JSON.stringify(this.weights)
   }
 
   deleteItem(id: string) {
