@@ -54,7 +54,7 @@ export class WeightHistoryComponent implements OnInit {
               parser: "YYYY-MM-DD",
               unit: "day",
               displayFormats: {
-                day: "DD-MMM"
+                day: "D.M"
               }
             },
             distribution: "series"

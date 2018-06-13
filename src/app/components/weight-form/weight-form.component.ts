@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { FlashMessagesService } from "angular2-flash-messages"
 import { WeightService } from "../../services/weight.service"
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"
+import { DatePipe } from "@angular/common"
 @Component({
   selector: "app-weight-form",
   templateUrl: "./weight-form.component.html",
@@ -17,8 +18,10 @@ export class WeightFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    let dateString = new DatePipe("en-US").transform(new Date(), "yyyy-MM-dd")
+
     this.form = this.fb.group({
-      date: [new Date(), Validators.required],
+      date: [dateString, Validators.required],
       weight: [
         90,
         [Validators.required, Validators.min(0), Validators.max(150)]
