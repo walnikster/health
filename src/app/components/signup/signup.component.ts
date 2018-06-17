@@ -47,13 +47,15 @@ export class SignupComponent implements OnInit {
   signup() {
     if (this.form.valid) {
       this.authService
-        .register(this.form.value.username, this.form.value.password)
+        .register(
+          this.form.value.username,
+          this.form.get("passwordgroup.password").value
+        )
         .then(res => {
           this.flashMessageService.show("You are now registered", {
             cssClass: "alert-success",
             timeout: 4000
           })
-          this.router.navigate(["/"])
         })
         .catch(err => {
           console.log(err.message)

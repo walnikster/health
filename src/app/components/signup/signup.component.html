@@ -7,7 +7,7 @@
         <h5>Register</h5>
       </div>
       <div class="card-body">
-        <form (submit)="signup()" [formGroup]="form">
+        <form [formGroup]="form">
           <div class="form-group">
             <label>Username</label>
             <input type="text" formControlName="username" placeholder="user@email.com" class="form-control" name="username" [ngClass]="{'is-invalid':form.controls.username.errors && form.controls.username.touched}">
@@ -39,7 +39,7 @@
               </div>
             </div>
           </div>
-          <input type="submit" value="Login" [disabled]="!form.valid" class="btn btn-primary btn-block">
+          <input type="button" value="Login" [disabled]="!form.valid" (click)=signup() class="btn btn-primary btn-block">
         </form>
       </div>
     </div>
