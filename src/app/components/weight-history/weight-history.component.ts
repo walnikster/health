@@ -24,10 +24,12 @@ export class WeightHistoryComponent implements OnInit {
     this.loading = true
     this.weightService.getWeights().subscribe(weights => {
       this.weights = weights
-      this.firstdate = weights[weights.length - 1].date
-      let firstWeight = weights[weights.length - 1].weight
-      let lastWeight = weights[0].weight
-      this.difference = (lastWeight - firstWeight).toFixed(2)
+      if (weights && weights.length > 0) {
+        this.firstdate = weights[weights.length - 1].date
+        let firstWeight = weights[weights.length - 1].weight
+        let lastWeight = weights[0].weight
+        this.difference = (lastWeight - firstWeight).toFixed(2)
+      }
       let chartWeights = weights.slice().reverse()
       this.loading = false
       this.data = {

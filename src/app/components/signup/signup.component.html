@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h5>Register</h5>
+      </div>
+      <div class="card-body">
+        <form (submit)="signup()" [formGroup]="form">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" formControlName="username" placeholder="user@email.com" class="form-control" name="username" [ngClass]="{'is-invalid':form.controls.username.errors && form.controls.username.touched}">
+            <div [hidden]="!form.controls.username.errors?.required" class="invalid-feedback">
+              Username is required
+            </div>
+          </div>
+          <div formGroupName="passwordgroup">
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" (input)="form.get('passwordgroup').updateValueAndValidity()" formControlName="password" class="form-control"
+                name="password" [ngClass]="{'is-invalid':form.get('passwordgroup.password').errors && form.get('passwordgroup.password').touched || form.get('passwordgroup')?.errors?.confirmnomatch}">
+              <div [hidden]="!form.get('passwordgroup.password').errors?.required" class="invalid-feedback">
+                Password is required
+              </div>
+              <div [hidden]="!form.get('passwordgroup')?.errors?.confirmnomatch" class="invalid-feedback">
+                Passwords do not match
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Retype password</label>
+              <input type="password" (input)="form.get('passwordgroup').updateValueAndValidity()" formControlName="passwordRetype" class="form-control"
+                name="passwordRetype" [ngClass]="{'is-invalid':form.get('passwordgroup.passwordRetype').errors && form.get('passwordgroup.passwordRetype').touched || form.get('passwordgroup')?.errors?.confirmnomatch}">
+              <div [hidden]="!form.get('passwordgroup.passwordRetype').errors?.required" class="invalid-feedback">
+                Password is required
+              </div>
+              <div [hidden]="!form.get('passwordgroup')?.errors?.confirmnomatch" class="invalid-feedback">
+                Passwords do not match
+              </div>
+            </div>
+          </div>
+          <input type="submit" value="Login" [disabled]="!form.valid" class="btn btn-primary btn-block">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

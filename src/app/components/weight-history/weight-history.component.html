@@ -2,7 +2,7 @@
   <div class="card-header d-flex flex-row self-align-bottom">
     <h5>
       <i class="fa fa-balance-scale"></i> Weight History</h5>
-    <h5 class="text-right text-muted ml-auto">Progress since {{firstdate}} {{difference}} kg</h5>
+    <h5 class="text-right text-muted ml-auto" *ngIf="difference">Progress since {{firstdate}} {{difference}} kg</h5>
   </div>
   <div class="card-body">
     <h5 *ngIf="loading" class="text-center">... loading weight history ...</h5>

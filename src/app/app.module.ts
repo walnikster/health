@@ -21,6 +21,7 @@ import { WeightrackingComponent } from "./components/weightracking/weightracking
 import { WeightService } from "./services/weight.service"
 import { AuthService } from "./services/auth.service"
 import { ServiceWorkerModule } from "@angular/service-worker"
+import { SignupComponent } from "./components/signup/signup.component"
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ServiceWorkerModule } from "@angular/service-worker"
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
-    WeightrackingComponent
+    WeightrackingComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

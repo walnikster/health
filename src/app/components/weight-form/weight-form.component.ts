@@ -19,7 +19,6 @@ export class WeightFormComponent implements OnInit {
 
   ngOnInit() {
     let dateString = new DatePipe("en-US").transform(new Date(), "yyyy-MM-dd")
-
     this.form = this.fb.group({
       date: [dateString, Validators.required],
       weight: [
