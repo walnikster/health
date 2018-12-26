@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core"
-import { Weight } from "../../models/Weight"
-import { WeightService } from "../../services/weight.service"
-import { JsonPipe } from "@angular/common"
+import { Component, OnInit } from '@angular/core'
+import { Weight } from '../../models/Weight'
+import { WeightService } from '../../services/weight.service'
+import { JsonPipe } from '@angular/common'
 
 @Component({
-  selector: "app-weight-history",
-  templateUrl: "./weight-history.component.html",
-  styleUrls: ["./weight-history.component.css"]
+  selector: 'app-weight-history',
+  templateUrl: './weight-history.component.html',
+  styleUrls: ['./weight-history.component.css']
 })
 export class WeightHistoryComponent implements OnInit {
   weights: Weight[]
@@ -32,18 +32,25 @@ export class WeightHistoryComponent implements OnInit {
       }
       let chartWeights = weights.slice().reverse()
       this.loading = false
+
+      let points = []
+
+      chartWeights.forEach(a =>
+        points.push({ x: new Date(a.date), y: a.weight })
+      )
+
       this.data = {
-        labels: chartWeights.map(a => a.date.toLocaleString()),
+        labels: chartWeights.map(a => new Date(a.date)),
         datasets: [
           {
-            data: chartWeights.map(a => a.weight),
-            borderColor: "#0069d9"
+            data: points,
+            borderColor: '#0069d9'
           }
         ]
       }
     })
 
-    this.type = "line"
+    this.type = 'line'
     this.options = {
       legend: {
         display: false
@@ -51,15 +58,15 @@ export class WeightHistoryComponent implements OnInit {
       scales: {
         xAxes: [
           {
-            type: "time",
-            time: {
-              parser: "YYYY-MM-DD",
-              unit: "day",
-              displayFormats: {
-                day: "D.M"
-              }
-            },
-            distribution: "series"
+            type: 'time',
+            distribution: 'series',
+            bounds: 'data',
+            ticks: {
+              source: 'data',
+              maxRotation: 0,
+              maxTicksLimit: 4,
+              autoSkip: true
+            }
           }
         ]
       },
